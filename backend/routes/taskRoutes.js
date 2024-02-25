@@ -17,15 +17,19 @@ router.post("/", async (req, res) => {
   res.status(201).json(newTasks);
 });
 
-// Update a task by ID
+// Update a task by id
 router.put("/:id", async (req, res) => {
-  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  if (!updatedTask) {
-    return res.status(404).json({ message: "Task not found" });
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+    res.json(updatedTask);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
-  res.json(updatedTask);
 });
 
 // Delete a task by ID

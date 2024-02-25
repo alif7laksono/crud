@@ -2,7 +2,12 @@
 import React from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import axios from "axios";
-import { TaskProps } from "../utils/types";
+import { Task } from "../utils/types";
+import { Link } from "react-router-dom";
+
+type TaskProps = {
+  task: Task;
+};
 
 const TaskCard: React.FC<TaskProps> = ({ task }) => {
   const handleDelete = async () => {
@@ -26,7 +31,9 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
       <p>{task.completed ? "Completed" : "Not Completed"}</p>
       <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
       <FaTrash onClick={handleDelete} />
-      <FaEdit />
+      <Link to={`/edit/${task._id}`}>
+        <FaEdit />
+      </Link>
     </div>
   );
 };

@@ -2,14 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TaskCard from "./taskCard";
-
-type Task = {
-  _id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  deadline: Date;
-};
+import { Task } from "../utils/types";
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
