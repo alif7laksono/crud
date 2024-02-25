@@ -45,12 +45,14 @@ const TaskList: React.FC = () => {
     <div>
       <Navbar search={search} setSearch={setSearch} />
 
-      {displayedTasks.map((task, index) => (
-        <div key={task._id}>
-          <p> {index + 1 + page * tasksPerPage}</p>
-          <TaskCard task={task} />
-        </div>
-      ))}
+      <div className="">
+        {displayedTasks.map((task, index) => (
+          <div key={task._id}>
+            <p> {index + 1 + page * tasksPerPage}</p>
+            <TaskCard task={task} />
+          </div>
+        ))}
+      </div>
       <button onClick={handlePrevious} disabled={page === 0}>
         Previous
       </button>

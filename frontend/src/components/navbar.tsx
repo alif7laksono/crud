@@ -14,7 +14,7 @@ export default function Navbar({ search, setSearch }: NavbarProps) {
 
   return (
     <nav>
-      <h1>Task List</h1>
+      <h1 className="">Task List</h1>
       <input
         type="search"
         placeholder="Search tasks"
@@ -22,7 +22,7 @@ export default function Navbar({ search, setSearch }: NavbarProps) {
         onChange={handleSearchChange}
       />
       <Link to="/add-task">
-        <button>Add Task</button>
+        <button className="">Add Task</button>
       </Link>
     </nav>
   );
