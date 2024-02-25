@@ -1,11 +1,5 @@
 import React from "react";
-
-interface TaskFilterProps {
-  filterStatus: string;
-  setFilterStatus: (status: string) => void;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-}
+import { TaskFilterProps } from "../utils/types";
 
 const TaskFilter: React.FC<TaskFilterProps> = ({
   filterStatus,
