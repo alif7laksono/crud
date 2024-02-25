@@ -4,12 +4,16 @@ import axios from "axios";
 import TaskCard from "./taskCard";
 import { Task } from "../utils/types";
 import Navbar from "./navbar";
+import TaskFilter from "./TaskFilter";
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [page, setPage] = useState(0);
+  const [filterStatus, setFilterStatus] = useState("all");
+
   const tasksPerPage = 6;
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("asc");
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -35,15 +39,31 @@ const TaskList: React.FC = () => {
   const displayedTasks = tasks
     .filter((task) => {
       return (
-        task.title.toLowerCase().includes(search.toLowerCase()) ||
-        task.description.toLowerCase().includes(search.toLowerCase())
+        (filterStatus === "all" ||
+          (filterStatus === "completed" && task.completed) ||
+          (filterStatus === "notCompleted" && !task.completed)) &&
+        (task.title.toLowerCase().includes(search.toLowerCase()) ||
+          task.description.toLowerCase().includes(search.toLowerCase()))
       );
+    })
+    .sort((a, b) => {
+      if (sortBy === "asc") {
+        return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+      } else {
+        return new Date(b.deadline).getTime() - new Date(a.deadline).getTime();
+      }
     })
     .slice(page * tasksPerPage, (page + 1) * tasksPerPage);
 
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Navbar search={search} setSearch={setSearch} />
+      <TaskFilter
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {displayedTasks.map((task) => (

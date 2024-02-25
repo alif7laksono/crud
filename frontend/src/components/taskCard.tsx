@@ -32,7 +32,13 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
       <p className="text-gray-700 mb-2 line-clamp-4 flex-grow">
         {task.description}
       </p>
-      <p className="text-sm text-gray-500 mb-2 h-[1.5rem]">
+      <p
+        className={
+          task.completed
+            ? "text-sm text-sky-500 mb-2 h-[1.5rem]"
+            : "text-sm text-red-500 mb-2 h-[1.5rem]"
+        }
+      >
         {task.completed ? "Completed" : "Not Completed"}
       </p>
       <p className="text-sm text-gray-500 mb-4 h-[1.5rem]">
