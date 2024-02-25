@@ -9,7 +9,7 @@ type RouteParams = {
 
 const EditTask: React.FC = () => {
   const { id } = useParams<RouteParams>();
-  const navigate = useNavigate(); // Hook to navigate to different routes
+  const navigate = useNavigate();
   const [task, setTask] = useState<Task>({
     _id: "",
     title: "",
@@ -47,9 +47,7 @@ const EditTask: React.FC = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:4000/tasks/${id}`, task);
-      // Display success message
       alert("Task updated successfully!");
-      // Navigate to the home page
       navigate("/");
     } catch (error) {
       console.error("Error updating task:", error);
@@ -83,7 +81,15 @@ const EditTask: React.FC = () => {
           value={new Date(task.deadline).toISOString().split("T")[0]}
           onChange={handleChange}
         />
-        <button type="submit">Update Task</button>
+        <button type="submit">Update Task</button>{" "}
+        <button
+          onClick={() => {
+            navigate("/");
+            window.location.reload();
+          }}
+        >
+          Cancel
+        </button>{" "}
       </form>
     </div>
   );

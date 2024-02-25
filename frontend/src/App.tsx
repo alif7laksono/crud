@@ -1,7 +1,6 @@
 // App.tsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TaskList from "./components/taskList";
-import Navbar from "./components/navbar";
 import AddTask from "./components/addTask";
 import EditTask from "./components/editTask";
 
@@ -9,7 +8,6 @@ function App() {
   return (
     <Router>
       <div className="">
-        <Navbar />
         <Routes>
           <Route path="/add-task" element={<AddTask />} />
           <Route path="/edit/:id" element={<EditTask />} />
@@ -19,7 +17,5 @@ function App() {
     </Router>
   );
 }
-
-
 
 export default App;
