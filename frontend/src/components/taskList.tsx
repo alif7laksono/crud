@@ -8,7 +8,7 @@ import Navbar from "./navbar";
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [page, setPage] = useState(0);
-  const tasksPerPage = 4;
+  const tasksPerPage = 6;
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -42,26 +42,42 @@ const TaskList: React.FC = () => {
     .slice(page * tasksPerPage, (page + 1) * tasksPerPage);
 
   return (
-    <div>
+    <div className="flex flex-col items-center space-y-4 p-4">
       <Navbar search={search} setSearch={setSearch} />
 
-      <div className="">
-        {displayedTasks.map((task, index) => (
-          <div key={task._id}>
-            <p> {index + 1 + page * tasksPerPage}</p>
-            <TaskCard task={task} />
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {displayedTasks.map((task) => (
+          <div key={task._id} className="flex items-start space-x-2">
+            <div className="flex-grow">
+              <TaskCard task={task} />
+            </div>
           </div>
         ))}
       </div>
-      <button onClick={handlePrevious} disabled={page === 0}>
-        Previous
-      </button>
-      <button
-        onClick={handleNext}
-        disabled={page >= Math.ceil(tasks.length / tasksPerPage) - 1}
-      >
-        Next
-      </button>
+      <div className="flex items-center space-x-4">
+        <button
+          onClick={handlePrevious}
+          disabled={page === 0}
+          className={`px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 ${
+            page === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-sky-500 hover:bg-sky-600 focus:ring-sky-500"
+          }`}
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={page >= Math.ceil(tasks.length / tasksPerPage) - 1}
+          className={`px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 ${
+            page >= Math.ceil(tasks.length / tasksPerPage) - 1
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-sky-500 hover:bg-sky-600 focus:ring-sky-500"
+          }`}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
