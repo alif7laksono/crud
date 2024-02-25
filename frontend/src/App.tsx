@@ -1,8 +1,20 @@
+// App.tsx
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TaskList from "./components/taskList";
+import Navbar from "./components/navbar";
+import AddTask from "./components/addTask";
+
 function App() {
   return (
-    <div className="">
-      <h1 className="text-3xl font-bold underline text-sky-500">Hello world!</h1>
-    </div>
+    <Router>
+      <div className="">
+        <Navbar />
+        <Routes>
+          <Route path="/add-task" element={<AddTask />} />
+          <Route path="/" element={<TaskList />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

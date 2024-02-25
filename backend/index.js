@@ -3,15 +3,17 @@ import mongoose from "mongoose";
 import { port, mongoDBURL } from "./config.js";
 import taskRoutes from "./routes/taskRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use("/tasks", taskRoutes);
 app.use("/users", userRoutes);
 
 mongoose
-  .connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoDBURL)
   .then(() => console.log("Database connected successfully"))
   .catch((err) => console.log(err));
 
