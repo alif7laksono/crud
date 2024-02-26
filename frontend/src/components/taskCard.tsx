@@ -25,7 +25,7 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
     }
   };
   return (
-    <div className="p-4 bg-white rounded shadow flex flex-col h-[19rem]">
+    <div className="cursor-pointer p-4 bg-white rounded shadow-lg flex flex-col h-[19rem] hover:shadow-lg transition-shadow duration-200 ease-in">
       <h2 className="text-xl font-semibold text-gray-900 mb-2 capitalize line-clamp-2 h-[3.5rem]">
         {task.title}
       </h2>
@@ -42,15 +42,18 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
         {task.completed ? "Completed" : "Not Completed"}
       </p>
       <p className="text-sm text-gray-500 mb-4 h-[1.5rem]">
-        Deadline: {new Date(task.deadline).toLocaleDateString()}
+        Deadline:{" "}
+        <span className="font-extrabold">
+          {new Date(task.deadline).toLocaleDateString()}
+        </span>
       </p>
-      <div className="flex items-center space-x-2 h-[1.5rem]">
+      <div className="flex items-center space-x-4 h-[2rem]">
         <FaTrash
           onClick={handleDelete}
-          className="text-gray-500 cursor-pointer hover:text-gray-600"
+          className="text-gray-500 cursor-pointer hover:text-gray-600 text-lg transform hover:scale-110 transition-transform"
         />
         <Link to={`/edit/${task._id}`}>
-          <FaEdit className="text-sky-500 cursor-pointer hover:text-sky-600" />
+          <FaEdit className="text-sky-500 cursor-pointer hover:text-sky-600 text-lg transform hover:scale-110 transition-transform" />
         </Link>
       </div>
     </div>
