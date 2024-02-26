@@ -13,3 +13,10 @@ export interface TaskFilterProps {
   sortBy: string;
   setSortBy: (sort: string) => void;
 }
+
+export interface PaginationProps {
+  page: number;
+  totalPages: number;
+  handlePrevious: () => void;
+  handleNext: () => void;
+}
