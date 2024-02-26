@@ -21,6 +21,10 @@ const Pagination: React.FC<PaginationProps> = ({
       >
         Previous
       </button>
+      <span>
+        Page {page + 1} of {totalPages}
+      </span>
+
       <button
         onClick={handleNext}
         disabled={page >= totalPages - 1}
