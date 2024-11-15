@@ -1,12 +1,13 @@
 # MERN Stack Task Management Application
 
-This is a task management application built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with TypeScript and Tailwind CSS.
+A straightforward CRUD application built with the MERN stack (MongoDB, Express, React, Node.js). The backend is implemented in JavaScript using Express and MongoDB, handling data storage and API endpoints. The frontend is developed in Next.js with TypeScript and styled with Tailwind CSS, providing a fast and responsive user interface.
 
 ## Features
 
-- CRUD operations for tasks: Create, Read, Update, and Delete tasks.
-- Search tasks: You can search for tasks based on their title or description.
-- Data pagination: Tasks are displayed in a paginated format for better readability.
-- Filter tasks: You can filter tasks based on their completion status.
-- Sort tasks: Tasks can be sorted by their deadline.
+RESTful API for Create, Read, Update, and Delete operations.
+User-friendly UI built with Next.js and TypeScript.
+Styled with Tailwind CSS for a clean, responsive design.
+Technologies Used:
 
+Backend: Node.js, Express, MongoDB
+Frontend: Next.js, TypeScript, Tailwind CSS
